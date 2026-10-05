@@ -1,10 +1,10 @@
 {
   "name": "backend-starter",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "NestJS backend app starter kit",
+  "author": "Hoang (Lucas) Tran",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "type": "module",
   "scripts": {
     "build": "nest build",
