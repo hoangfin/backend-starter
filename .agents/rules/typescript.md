@@ -79,3 +79,4 @@ type UserRole = (typeof userRoles)[number];
 
 - Files within a module may import each other directly. Across modules, import only from the other module's public API, never its internals, and avoid circular dependencies.
 - No wildcard imports. Use a barrel file only to define a module's deliberate public API, never to shorten import paths or re-export everything; barrels invite circular dependencies and extra module loading.
+- Import classes that Nest and MikroORM read from decorator metadata with a regular `import`, never `import type`: injected providers, DTO classes in route handler parameters, and classes used as decorated property types. `tsc` accepts `import type` there but emits `Function` in place of the class, so dependency injection fails at startup ("can't resolve dependencies") and `ValidationPipe` can't validate the DTO.
