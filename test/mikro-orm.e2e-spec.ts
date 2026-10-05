@@ -1,5 +1,5 @@
 import { Test } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
+import { INestApplication, VersioningType } from '@nestjs/common';
 import { MikroORM } from '@mikro-orm/postgresql';
 import { AppModule } from './../src/app.module.js';
 
@@ -9,6 +9,9 @@ async function createApp(): Promise<INestApplication> {
   }).compile();
 
   const app = moduleRef.createNestApplication();
+  app.setGlobalPrefix('api');
+  app.enableVersioning({ type: VersioningType.URI, defaultVersion: '1' });
+
   await app.init();
 
   await app.get(MikroORM).connect();
