@@ -4,6 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppService } from './app.service.js';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { PostgreSqlDriver } from '@mikro-orm/postgresql';
+import { HealthModule } from './health/health.module.js';
 import mikroOrmConfig from './mikro-orm.config.js';
 
 @Module({
@@ -17,6 +18,7 @@ import mikroOrmConfig from './mikro-orm.config.js';
         clientUrl: config.getOrThrow<string>('DATABASE_URL'),
       }),
     }),
+    HealthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
